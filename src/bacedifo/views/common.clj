@@ -16,7 +16,7 @@
                [:title "bacedifo"]
                (include-css "/css/reset.css")]
               [:body
-               [:h1 "Translate to bacedifo"]
+               [:h1 "Translate to bacedifo (ASCII only)"]
                [:div#wrapper
                 content
                (translate-form) ]
