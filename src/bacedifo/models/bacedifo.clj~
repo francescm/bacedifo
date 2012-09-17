@@ -1,4 +1,4 @@
-(ns web.models.bacedifo
+(ns bacedifo.models.bacedifo
   (:require [clojure.set])
   )
 

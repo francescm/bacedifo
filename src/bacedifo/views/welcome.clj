@@ -4,7 +4,7 @@
 ;            [noir.content.getting-started]
             )
   (:use [noir.core]
-        [bacedifo.models.bacedifo :only [bacedify-string]]
+        [bacedifo.models.bacedifo :only [init-bacedifo bacedify-string]]
         ))
 
 
@@ -21,6 +21,7 @@
   )
 
 (defpage [:post "/translate"] {:keys [text]}
+  (init-bacedifo)
   (common/layout
    [:p#bacedifo (bacedify-string text)]
    )

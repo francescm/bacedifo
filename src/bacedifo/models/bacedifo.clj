@@ -6,20 +6,31 @@
 (def vowels #{\a \e \i \o \u})
 (def not-vowels (clojure.set/difference letters vowels))
 
-(def bacedifo
+(defn bacedifo-values[]
   (let [
         start-vowel (int (rand (count vowels)))
         start-not-vowel (int (rand (count not-vowels)))
         vowels-seq (drop start-vowel (cycle vowels))
         not-vowels-seq (drop start-not-vowel (cycle not-vowels))
+        vowel-first? (even? (int (rand 2)))
         ]
-    (interleave not-vowels-seq vowels-seq)
+    (if vowel-first?
+      (interleave vowels-seq not-vowels-seq)
+      (interleave not-vowels-seq vowels-seq)
+      )
     )
+  )
+
+(def bacedifo (atom (bacedifo-values)))
+
+(defn init-bacedifo[]
+  (reset! bacedifo (bacedifo-values))
+  nil
   )
 
 (defn bacedify-char [index char]
   (if (re-matches #"[a-zA-Z]" (str char))
-    (nth bacedifo index)
+    (nth @bacedifo index)
     char
     )
   )
