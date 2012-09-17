@@ -20,5 +20,5 @@
                [:div#wrapper
                 content
                (translate-form) ]
-               [:p#signature "Download source at " (link-to "http://github.com/" "github")]
+               [:p#signature "Download source at " (link-to "https://github.com/francescm/bacedifo" "bacedifo on github")]
                ]))
