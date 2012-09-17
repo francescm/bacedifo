@@ -1,0 +1,29 @@
+(ns bacedifo.models.bacedifo
+  (:require [clojure.set])
+  )
+
+(def letters (set (map char (range 97 123))))
+(def vowels #{\a \e \i \o \u})
+(def not-vowels (clojure.set/difference letters vowels))
+
+(def bacedifo
+  (let [
+        start-vowel (int (rand (count vowels)))
+        start-not-vowel (int (rand (count not-vowels)))
+        vowels-seq (drop start-vowel (cycle vowels))
+        not-vowels-seq (drop start-not-vowel (cycle not-vowels))
+        ]
+    (interleave not-vowels-seq vowels-seq)
+    )
+  )
+
+(defn bacedify-char [index char]
+  (if (re-matches #"[a-zA-Z]" (str char))
+    (nth bacedifo index)
+    char
+    )
+  )
+
+(defn bacedify-string [text]
+  (map-indexed #(bacedify-char %1 %2) text)
+  )

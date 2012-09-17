@@ -1,0 +1,38 @@
+(ns web.views.welcome
+  (:require [web.views.common :as common]
+            [noir.response :as resp]
+            [noir.content.getting-started]
+            )
+  (:use [noir.core]
+        [web.models.bacedifo :only [bacedify-string]]
+        [hiccup.core :only [html]]
+        [hiccup.form-helpers]
+        ))
+
+
+(defpartial signature[]
+  [:p "firma"]
+  )
+
+(defpartial translate-form[]
+   (form-to [:post "/translate"]
+            (text-field "text")
+            (submit-button "translate"))
+  )
+
+(defpage "/welcome" []
+  (html
+   [:h1 "translate to bacedifo"]
+   (translate-form)
+   (signature)
+   )
+  )
+
+(defpage [:post "/translate"] {:keys [text]}
+  (html
+   [:h1 "translate to bacedifo"]
+   [:p (bacedify-string text)]
+   (signature)
+   )
+  )
+
