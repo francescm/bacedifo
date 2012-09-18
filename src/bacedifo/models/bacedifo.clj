@@ -38,3 +38,20 @@
 (defn bacedify-string [text]
   (map-indexed #(bacedify-char %1 %2) text)
   )
+
+(defn bacedify-str [text]
+  (loop [t text
+         index 0
+         res ""
+         ]
+    (let [char (first t)]
+      (if t
+        (if (re-matches #"[a-zA-Z]" (str char))
+          (recur (next t) (inc index) (str res (nth @bacedifo index)))
+          (recur (next t) index (str res char))
+          )
+        res
+        )
+      )
+    )
+  )

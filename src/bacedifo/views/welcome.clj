@@ -23,7 +23,7 @@
 (defpage [:post "/translate"] {:keys [text]}
   (init-bacedifo)
   (common/layout
-   [:p#bacedifo (bacedify-string text)]
+   [:p#bacedifo (bacedify-str text)]
    )
   )
 
