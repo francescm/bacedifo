@@ -4,7 +4,7 @@
 ;            [noir.content.getting-started]
             )
   (:use [noir.core]
-        [bacedifo.models.bacedifo :only [init-bacedifo bacedify-string]]
+        [bacedifo.models.bacedifo :only [init-bacedifo bacedify-string bacedify-str]]
         ))
 
 
